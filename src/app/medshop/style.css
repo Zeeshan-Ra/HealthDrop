@@ -1,0 +1,72 @@
+.logo {
+    display: flex;
+    gap: 5px;
+}
+
+.logo h4{
+    margin-top: 16px;
+    color: darkcyan;
+    font-weight: bolder;
+}
+
+.header-wrapper{
+    display: flex;
+    background-color: whitesmoke;
+    height: 53px;
+    box-shadow: 0px 11px 16px gray;
+    justify-content: space-between;
+}
+
+.header-wrapper ul{
+    display: flex;
+    margin-right: 40px;
+}
+
+.header-wrapper li{
+    list-style: none;
+    padding: 14px 26px;
+    font-weight: bolder;
+
+}
+
+.header-wrapper ul li a{
+    text-decoration: none;
+    color: orange;
+}
+.header-wrapper ul li a:hover{
+    color: orangered;
+}
+
+.header-wrapper ul li button{
+    background-color: transparent;
+    border: none;
+    color: orangered;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.footer-wrapper{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+    background-color: whitesmoke;
+}
+
+.btn {
+    display: flex;
+    gap: 18px;
+    margin-left: 20px;
+    margin-top: 18px;
+}
+
+.btn button{
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: blueviolet;
+}

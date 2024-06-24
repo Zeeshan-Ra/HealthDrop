@@ -1,0 +1,359 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+.login-input-wrapper {
+    margin: 18px;
+}
+
+.input-field {
+    width: 255px;
+    height: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.input-field:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: #888;
+    font-size: 10px;
+    font-style: italic;
+}
+
+.input-error {
+    position: absolute;
+    color: red;
+    font-size: 13px;
+    left: 68px;
+    margin-top: -7px;
+}
+
+.button {
+    width: 200px;
+    height: 30px;
+    font-weight: bolder;
+    color: white;
+    background-color: orange;
+    border-radius: 6px;
+    border: 1px solid white;
+}
+
+.button:hover {
+    background-color: orangered;
+    cursor: pointer;
+}
+
+.container {
+    width: 400px;
+    height: 497px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    box-shadow: 9px 11px 14px gray;
+}
+
+.styled-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.medicine-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.operation-link {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+.main-page-banner,
+.medshop-page-banner {
+    background-image: url('/images/home_img.jpg');
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    padding: 30px;
+    height: 440px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+}
+
+.input-wrapper {
+    background-color: whitesmoke;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: auto;
+    width: 60%;
+    margin-top: 6%;
+}
+
+.select-input {
+    height: 40px;
+    border: none;
+    width: 25%;
+}
+
+.search-input {
+    height: 40px;
+    border: none;
+    width: 45%;
+    padding-left: 15px;
+    border-left: 1px solid #ccc;
+}
+
+.location-list {
+    color: black;
+    list-style-type: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    margin-left: 40px;
+    border: 1px solid #ccc;
+}
+
+.location-list li {
+    width: 205px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.medshop-list-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.medshop-wrapper {
+    width: 45%;
+    background-color: #009879;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    color: whitesmoke;
+}
+
+.medshop-wrapper .heading-wrapper {
+    padding-left: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.heading-wrapper h3 {
+    margin-left: -14px;
+    text-decoration: underline;
+}
+
+.medshop-wrapper .address-wrapper {
+    margin-top: 20px;
+}
+
+.medshop-page-banner {
+    font-size: 65px;
+}
+
+
+.detail-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #009879;
+    color: #fff;
+  }
+  
+  .detail-wrapper h4 {
+    width: 50%;
+  }
+  
+  .medicine-wrapper {
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .medicine-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .medicine-item:hover {
+    transform: translateY(-10px);
+  }
+  
+  .medicine-item img {
+    width: 100px;
+    padding-right: 20px;
+    border-bottom: 1px solid #009879;
+  }
+  
+  .med-details-wrapper {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    height: 100%;
+  }
+  
+  .med-details-wrapper h4 {
+    font-size: 1.5em;
+    margin: 0;
+    color: #009879;
+  }
+  
+  .med-details-wrapper div {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+  .med-details-wrapper .med-description {
+    color: #1b1a1a;
+    font-size: 14px;
+    font-weight: 500;
+    flex-grow: 1;
+  }
+  
+  .med-details-wrapper button {
+    background-color: #009879;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    width: 100px;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin-top: auto;
+  }
+  
+  .med-details-wrapper button:hover {
+    background-color: #007a63;
+  }
+
+  .total-price-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid orange;
+    border-top: 1px solid orange;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  .total-price-wrapper .row{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20%;
+    margin-right: 20%;
+    color: orange;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .block-1 {
+    width: 70%;
+  }
+  .block-2 {
+    width: 30%;
+  }
+  .block-2 button{
+    padding: 10px 25px;
+    border: none;
+    background-color: #4CAF50;
+    color: whitesmoke;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.containerStyle {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  padding: 10px;
+}
+
+.selectStyle {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.selectStyle:focus {
+  border-color: #007bff;
+}
