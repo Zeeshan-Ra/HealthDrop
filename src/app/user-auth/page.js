@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import UserLogin from "../_components/UserLogin";
@@ -12,6 +12,13 @@ const Page = ({ searchParams }) => {
         setLogin(!login);
     };
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const userLoggedIn = localStorage.getItem('userLoggedIn');
+            setLogin(userLoggedIn === 'true');
+        }
+    }, []);
+
     return (
         <div>
             <CustomerHeader />
@@ -22,9 +29,9 @@ const Page = ({ searchParams }) => {
                     <UserSignup redirect={searchParams} />
                 )}
                 <p style={{ color: 'gray', marginTop: 15 }}>
-                    {login ? "Do not have account?" : "Already have account?"}
+                    {login ? "Do not have an account?" : "Already have an account?"}
                     <span style={{ cursor: "pointer", color: 'blue' }} onClick={handleLogin}>
-                        {login ? " Signup" : " Login"}
+                        {login ? " Sign up" : " Log in"}
                     </span>
                 </p>
             </div>
