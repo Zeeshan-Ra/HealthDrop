@@ -10,10 +10,16 @@ const Page = () => {
         const getMyOrders = async () => {
             const userStorage = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'));
             if (userStorage) {
-                const response = await fetch(`http://localhost:3000/api/order?id=${userStorage._id}`);
-                const data = await response.json();
-                if (data.success) {
-                    setMyOrders(data.result);
+                try {
+                    const response = await fetch(`http://localhost:3000/api/order?id=${userStorage._id}`);
+                    const data = await response.json();
+                    if (data.success) {
+                        setMyOrders(data.result);
+                    } else {
+                        console.error('Error fetching orders:', data.error);
+                    }
+                } catch (error) {
+                    console.error('Error fetching orders:', error);
                 }
             }
         };
