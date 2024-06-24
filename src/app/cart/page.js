@@ -13,17 +13,21 @@ const Page = () => {
     useEffect(() => {
         const cart = localStorage.getItem('cart');
         if (cart) {
-            const parsedCart = JSON.parse(cart);
-            setCartStorage(parsedCart);
-            const cartTotal = parsedCart.length === 1 
-                ? Number(parsedCart[0].price) 
-                : parsedCart.reduce((a, b) => Number(a.price) + Number(b.price));
-            setTotal(cartTotal);
+            try {
+                const parsedCart = JSON.parse(cart);
+                setCartStorage(parsedCart);
+
+                const cartTotal = parsedCart.reduce((acc, item) => acc + Number(item.price), 0);
+                setTotal(cartTotal);
+            } catch (error) {
+                console.error('Error parsing cart data:', error);
+            }
         }
     }, []);
 
     const orderNow = () => {
-        if (JSON.parse(localStorage.getItem('user'))) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
             router.push('/order');
         } else {
             router.push('/user-auth?order=true');
@@ -34,9 +38,8 @@ const Page = () => {
         const updatedCart = cartStorage.filter(medicine => medicine._id !== id);
         setCartStorage(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        const updatedTotal = updatedCart.length === 1 
-            ? Number(updatedCart[0].price) 
-            : updatedCart.reduce((a, b) => Number(a.price) + Number(b.price), 0);
+
+        const updatedTotal = updatedCart.reduce((acc, item) => acc + Number(item.price), 0);
         setTotal(updatedTotal);
     };
 
@@ -44,19 +47,23 @@ const Page = () => {
         <div>
             <CustomerHeader />
             <div className="medicine-wrapper">
-                {
-                    cartStorage.length > 0 ? cartStorage.map((medicine, i) => (
-                        <div className="medicine-item" key={i}>
+                {cartStorage.length > 0 ? (
+                    cartStorage.map((medicine, index) => (
+                        <div className="medicine-item" key={index}>
                             <div><img style={{ width: 100 }} src={medicine.img_path} alt="medicine" /></div>
                             <div className="med-details-wrapper">
                                 <div>{medicine.name}</div>
                                 <div className="med-description">{medicine.description}</div>
-                                <div style={{ color: '#1A2421' }}><span style={{ color: 'red' }}>Price: </span>₹ {medicine.price}</div>
+                                <div style={{ color: '#1A2421' }}>
+                                    <span style={{ color: 'red' }}>Price: </span>₹ {medicine.price}
+                                </div>
                                 <button onClick={() => removeFromCart(medicine._id)}>Remove from cart</button>
                             </div>
                         </div>
-                    )) : <h1>No Medicine Available</h1>
-                }
+                    ))
+                ) : (
+                    <h1>No Medicine Available</h1>
+                )}
             </div>
             <div className="total-price-wrapper">
                 <div className="block-1">
