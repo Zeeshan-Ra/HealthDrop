@@ -1,7 +1,11 @@
 "use client"
 import { useEffect, useState } from "react";
-import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
+import dynamic from "next/dynamic"
+
+const DynamicCustomerHeader = dynamic(()=> import("../_components/CustomerHeader"),{
+    ssr: false
+})
 
 const Page = () => {
 
@@ -22,7 +26,7 @@ const getMyOrders = async () => {
 
     return (
         <div>
-            <CustomerHeader />
+            <DynamicCustomerHeader />
             {
                 myOrders.map((item) => (
                     <div className="medshop-wrapper" style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 28}}>
