@@ -28,7 +28,7 @@ const Page = () => {
 
     const handleLogin = async () => {
         console.log(loginMobile, loginPassword);
-        let response = await fetch("http://localhost:3000/api/deliverypartners/login", {
+        let response = await fetch("api/deliverypartners/login", {
             method: "POST",
             body: JSON.stringify({ mobile:loginMobile, password:loginPassword })
         })
@@ -44,7 +44,7 @@ const Page = () => {
     }
 
     const handleSignup = async () => {
-        let response = await fetch("http://localhost:3000/api/deliverypartners/signup", {
+        let response = await fetch("api/deliverypartners/signup", {
             method: "POST",
             body: JSON.stringify({ name, mobile, password, city, address })
         })
