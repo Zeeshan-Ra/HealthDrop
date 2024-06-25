@@ -10,7 +10,7 @@ const Page = () => {
     useEffect(() => {   
     const getMyOrders = async () => {
         if(typeof window !== "undefined"){
-            const userStorage = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))
+            let userStorage = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))
         }
         
         let response = await fetch("http://localhost:3000/api/order?id=" + userStorage._id);
