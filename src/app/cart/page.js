@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import { DELIVERY_CHARGES, TAX } from "../lib/constant";
@@ -8,11 +8,7 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
 
-    useEffect(() => {
-        let cartItem = localStorage.getItem('cart')
-    },[])
-
-    const [cartStorage, setCartStorage] = useState(JSON.parse(cartItem));
+    const [cartStorage, setCartStorage] = useState(JSON.parse(localStorage.getItem('cart')));
     const router = useRouter()
     const [total] = useState(() => cartStorage.length == 1 ? Number(cartStorage[0].price) : cartStorage.reduce((a, b) => {
         let x = a.price
@@ -23,7 +19,7 @@ const Page = () => {
     }))
 
     const orderNow = () => {
-        if(JSON.parse(localStorage.getItem('user'))){
+        if(typeof window !== "undefined" && JSON.parse(localStorage.getItem('user'))){
             router.push('/order')
         }
         else {
