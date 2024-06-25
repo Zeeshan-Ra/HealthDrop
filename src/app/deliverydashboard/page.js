@@ -18,7 +18,7 @@ const Page = () => {
 
     const getMyOrders = async () => {
         const deliveryData = JSON.parse(localStorage.getItem('delivery'))
-        let response = await fetch("http://localhost:3000/api/deliverypartners/order/" + deliveryData._id);
+        let response = await fetch("api/deliverypartners/order/" + deliveryData._id);
         response = await response.json();
         if (response.success) {
             setMyOrders(response.result)
