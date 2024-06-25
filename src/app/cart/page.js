@@ -7,8 +7,12 @@ import { useRouter } from "next/navigation";
 
 
 const Page = () => {
-
-    const [cartStorage, setCartStorage] = useState(JSON.parse(localStorage.getItem('cart')));
+    let savedCart = "";
+    useEffect(() => {
+        savedCart = JSON.parse(localStorage.getItem('cart'));
+        setCartStorage(savedCart ?? "")
+    }, [])
+    const [cartStorage, setCartStorage] = useState(savedCart ?? "");
     const router = useRouter()
     const [total] = useState(() => cartStorage.length == 1 ? Number(cartStorage[0].price) : cartStorage.reduce((a, b) => {
         let x = a.price
