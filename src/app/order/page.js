@@ -1,9 +1,13 @@
 "use client"
 import { useEffect, useState } from "react";
-import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import { DELIVERY_CHARGES, TAX } from "../lib/constant";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic"
+
+const DynamicCustomerHeader = dynamic(()=> import("../_components/CustomerHeader"),{
+    ssr: false
+})
 
 
 const Page = () => {
@@ -69,7 +73,7 @@ const Page = () => {
 
     return (
         <div>
-            <CustomerHeader removeCartData={removeCartData} />
+            <DynamicCustomerHeader removeCartData={removeCartData} />
             <div className="total-price-wrapper">
                 <div className="block-1">
                     <h2>User Details</h2>
