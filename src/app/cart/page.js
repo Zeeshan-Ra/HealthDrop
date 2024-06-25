@@ -1,10 +1,13 @@
 "use client"
 import { useState } from "react";
-import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import { DELIVERY_CHARGES, TAX } from "../lib/constant";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic"
 
+const DynamicCustomerHeader = dynamic(()=> import("../_components/CustomerHeader"),{
+    ssr: false
+})
 
 const Page = () => {
     const [cartStorage, setCartStorage] = useState(JSON.parse(localStorage.getItem('cart')));
@@ -28,7 +31,7 @@ const Page = () => {
 
     return (
         <div>
-            <CustomerHeader />
+            <DynamicCustomerHeader />
             <div className="medicine-wrapper">
                 {
                     cartStorage.length > 0 ? cartStorage.map((medicine, i) => (
