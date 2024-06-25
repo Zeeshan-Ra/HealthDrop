@@ -26,14 +26,13 @@ const Page = () => {
             router.push('/')
         }
     }, [total])
-
-    useEffect = (()=> {
-        let user_Id = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))._id;
-        let city = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).city;
-        let cart = localStorage.getItem('cart') && JSON.parse(localStorage.getItem('cart'));
-    },[])
     
     const orderNow = async () => {
+        if(typeof window !== "undefined") {
+             let user_Id = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))._id;
+            let city = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).city;
+            let cart = localStorage.getItem('cart') && JSON.parse(localStorage.getItem('cart'));
+        }
         let medItemsIds = cart.map((item) => item._id).toString()
         let medShop_id = cart[0].medshop_id;
         let deliveryBoyResponse = await fetch("http://localhost:3000/api/deliverypartners/" + city);
