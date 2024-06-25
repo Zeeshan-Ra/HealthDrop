@@ -7,9 +7,17 @@ import { useRouter } from "next/navigation";
 
 
 const Page = () => {
+    let savedUser = "";
+    let savedCart = "";
+    useEffect(()=>{
+        savedUser = JSON.parse(localStorage.getItem('user'));
+        savedCart = JSON.parse(localStorage.getItem('cart'));
+        setUserStorage(savedUser ?? "");
+        setCartStorage(savedCart ?? "");
+    },[])
 
-    const [userStorage, setUserStorage] = useState(JSON.parse(localStorage.getItem('user')))
-    const [cartStorage, setCartStorage] = useState(JSON.parse(localStorage.getItem('cart')));
+    const [userStorage, setUserStorage] = useState(savedUser ?? "" )
+    const [cartStorage, setCartStorage] = useState(savedCart ?? "");
     const [total] = useState(() => cartStorage?.length == 1 ? Number(cartStorage[0].price) : cartStorage?.reduce((a, b) => {
         let x = a.price
         let num1 = +x
