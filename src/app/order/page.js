@@ -32,7 +32,7 @@ const Page = () => {
     }, [total])
     
     useEffect(() => {
-        const orderNow = async () => {
+        let orderNow = async () => {
         let user_Id = JSON.parse(localStorage.getItem('user'))._id;
         let city = JSON.parse(localStorage.getItem('user')).city;
         let cart = JSON.parse(localStorage.getItem('cart'));
