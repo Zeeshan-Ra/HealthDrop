@@ -1,69 +1,52 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import { DELIVERY_CHARGES, TAX } from "../lib/constant";
 import { useRouter } from "next/navigation";
 
+
 const Page = () => {
-    const [cartStorage, setCartStorage] = useState([]);
-    const [total, setTotal] = useState(0);
-    const router = useRouter();
 
-    useEffect(() => {
-        const cart = localStorage.getItem('cart');
-        if (cart) {
-            try {
-                const parsedCart = JSON.parse(cart);
-                setCartStorage(parsedCart);
-
-                const cartTotal = parsedCart.reduce((acc, item) => acc + Number(item.price), 0);
-                setTotal(cartTotal);
-            } catch (error) {
-                console.error('Error parsing cart data:', error);
-            }
-        }
-    }, []);
+    const [cartStorage, setCartStorage] = useState(localStorage.getItem('cart') || JSON.parse(localStorage.getItem('cart')));
+    const router = useRouter()
+    const [total] = useState(() => cartStorage.length == 1 ? Number(cartStorage[0].price) : cartStorage.reduce((a, b) => {
+        let x = a.price
+        let num1 = +x
+        let y = b.price
+        let num2 = +y
+        return num1 + num2
+    }))
 
     const orderNow = () => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-            router.push('/order');
-        } else {
-            router.push('/user-auth?order=true');
+        if(JSON.parse(localStorage.getItem('user'))){
+            router.push('/order')
         }
-    };
-
-    const removeFromCart = (id) => {
-        const updatedCart = cartStorage.filter(medicine => medicine._id !== id);
-        setCartStorage(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-        const updatedTotal = updatedCart.reduce((acc, item) => acc + Number(item.price), 0);
-        setTotal(updatedTotal);
-    };
+        else {
+            router.push('/user-auth?order=true')
+        }
+    }
 
     return (
         <div>
             <CustomerHeader />
             <div className="medicine-wrapper">
-                {cartStorage.length > 0 ? (
-                    cartStorage.map((medicine, index) => (
-                        <div className="medicine-item" key={index}>
+                {
+                    cartStorage.length > 0 ? cartStorage.map((medicine, i) => (
+                        <div className="medicine-item" key={i}>
                             <div><img style={{ width: 100 }} src={medicine.img_path} alt="medicine" /></div>
                             <div className="med-details-wrapper">
                                 <div>{medicine.name}</div>
                                 <div className="med-description">{medicine.description}</div>
-                                <div style={{ color: '#1A2421' }}>
-                                    <span style={{ color: 'red' }}>Price: </span>₹ {medicine.price}
-                                </div>
-                                <button onClick={() => removeFromCart(medicine._id)}>Remove from cart</button>
+                                <div style={{ color: '#1A2421' }}><span style={{ color: 'red' }}>Price: </span>₹ {medicine.price}</div>
+                                {
+                                    <button onClick={() => removeFromCart(medicine._id)}>Remove from cart</button>
+                                }
                             </div>
+
                         </div>
-                    ))
-                ) : (
-                    <h1>No Medicine Available</h1>
-                )}
+                    )) : <h1>No Medicine Available</h1>
+                }
             </div>
             <div className="total-price-wrapper">
                 <div className="block-1">
@@ -90,7 +73,7 @@ const Page = () => {
             </div>
             <Footer />
         </div>
-    );
-};
+    )
+}
 
 export default Page;
