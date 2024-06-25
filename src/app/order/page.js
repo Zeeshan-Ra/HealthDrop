@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
 
-    const [userStorage, setUserStorage] = useState(JSON.parse(localStorage.getItem('user')))
-    const [cartStorage, setCartStorage] = useState(JSON.parse(localStorage.getItem('cart')));
+    const [userStorage, setUserStorage] = useState(localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')))
+    const [cartStorage, setCartStorage] = useState(localStorage.getItem('cart') && JSON.parse(localStorage.getItem('cart')));
     const [total] = useState(() => cartStorage?.length == 1 ? Number(cartStorage[0].price) : cartStorage?.reduce((a, b) => {
         let x = a.price
         let num1 = +x
