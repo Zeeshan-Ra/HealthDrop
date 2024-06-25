@@ -4,7 +4,7 @@ import Footer from "./_components/Footer";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic"
 
-const DynamicCustomerHeader = dynamic(()=> import("../_components/CustomerHeader"),{
+const DynamicCustomerHeader = dynamic(()=> import("./_components/CustomerHeader"),{
     ssr: false
 })
 
