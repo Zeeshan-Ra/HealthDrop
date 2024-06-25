@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import { DELIVERY_CHARGES, TAX } from "../lib/constant";
@@ -8,7 +8,11 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
 
-    const [cartStorage, setCartStorage] = useState(JSON.parse(localStorage.getItem('cart')));
+    useEffect(() => {
+        let cartItem = localStorage.getItem('cart')
+    },[])
+
+    const [cartStorage, setCartStorage] = useState(JSON.parse(cartItem));
     const router = useRouter()
     const [total] = useState(() => cartStorage.length == 1 ? Number(cartStorage[0].price) : cartStorage.reduce((a, b) => {
         let x = a.price
