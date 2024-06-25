@@ -19,7 +19,7 @@ const Page = () => {
     }))
 
     const orderNow = () => {
-        if(typeof window !== "undefined" && JSON.parse(localStorage.getItem('user'))){
+        if(JSON.parse(localStorage.getItem('user'))){
             router.push('/order')
         }
         else {
