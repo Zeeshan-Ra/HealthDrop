@@ -1,8 +1,12 @@
 "use client"
 import { useEffect, useState } from "react";
-import CustomerHeader from "./_components/CustomerHeader";
 import Footer from "./_components/Footer";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic"
+
+const DynamicCustomerHeader = dynamic(()=> import("../_components/CustomerHeader"),{
+    ssr: false
+})
 
 export default function Home() {
 
@@ -47,7 +51,7 @@ export default function Home() {
 
   return (
     <main >
-      <CustomerHeader />
+      <DynamicCustomerHeader />
       <div className="main-page-banner">
         <h1>Buy Your Medicines</h1>
         <div className="input-wrapper">
