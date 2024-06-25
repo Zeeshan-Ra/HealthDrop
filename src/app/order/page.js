@@ -46,7 +46,6 @@ const Page = () => {
             alert("Delivery Partner not available")
             return false;
         }
-            orderNow()
     } ,[])
 
         let collection = {
