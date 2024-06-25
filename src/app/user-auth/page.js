@@ -1,10 +1,13 @@
 "use client"
 import { useState } from "react";
-import CustomerHeader from "../_components/CustomerHeader";
 import Footer from "../_components/Footer";
 import UserLogin from "../_components/UserLogin";
 import UserSignup from "../_components/UserSignup";
+import dynamic from "next/dynamic"
 
+const DynamicCustomerHeader = dynamic(()=> import("../_components/CustomerHeader"),{
+    ssr: false
+})
 
 const Page = (props) => {
 
@@ -16,7 +19,7 @@ const Page = (props) => {
 
     return (
         <div>
-            <CustomerHeader />
+            <DynamicCustomerHeader />
             <div className="container">
             {
                 login ?
