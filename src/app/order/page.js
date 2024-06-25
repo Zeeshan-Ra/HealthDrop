@@ -31,7 +31,8 @@ const Page = () => {
         }
     }, [total])
     
-    const orderNow = async () => {
+    useEffect(() => {
+        const orderNow = async () => {
         let user_Id = JSON.parse(localStorage.getItem('user'))._id;
         let city = JSON.parse(localStorage.getItem('user')).city;
         let cart = JSON.parse(localStorage.getItem('cart'));
@@ -45,6 +46,8 @@ const Page = () => {
             alert("Delivery Partner not available")
             return false;
         }
+            orderNow()
+    } ,[])
 
         let collection = {
             user_Id,
