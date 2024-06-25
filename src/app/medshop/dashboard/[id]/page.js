@@ -15,7 +15,7 @@ const EditMeds = (props) => {
     },[]);
 
     const handleLoadMeds = async () => {
-        let response = await fetch("http://localhost:3000/api/medshop/medicines/edit/"+props.params.id);
+        let response = await fetch("api/medshop/medicines/edit/"+props.params.id);
         response = await response.json();
         if(response.success){
             setName(response.result.name);
@@ -33,7 +33,7 @@ const EditMeds = (props) => {
         else {
             setError(false)
         }
-        let response = await fetch("http://localhost:3000/api/medshop/medicines/edit/"+props.params.id, {
+        let response = await fetch("api/medshop/medicines/edit/"+props.params.id, {
             method:"PUT",
             body: JSON.stringify({name, price, img_path:path, description})
         })
