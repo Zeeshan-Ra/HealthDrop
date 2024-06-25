@@ -10,7 +10,7 @@ const DynamicCustomerHeader = dynamic(()=> import("../_components/CustomerHeader
 })
 
 const Page = () => {
-    const [cartStorage, setCartStorage] = useState(JSON.parse(localStorage.getItem('cart')));
+    const [cartStorage, setCartStorage] = useState(localStorage.getItem('cart') ?? JSON.parse(localStorage.getItem('cart')));
     const router = useRouter()
     const [total] = useState(() => cartStorage.length == 1 ? Number(cartStorage[0].price) : cartStorage.reduce((a, b) => {
         let x = a.price
@@ -21,7 +21,7 @@ const Page = () => {
     }))
 
     const orderNow = () => {
-        if(JSON.parse(localStorage.getItem('user'))){
+        if(typeof window !== "undefined" && JSON.parse(localStorage.getItem('user'))){
             router.push('/order')
         }
         else {
