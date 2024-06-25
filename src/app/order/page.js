@@ -48,7 +48,7 @@ const Page = () => {
         let cart = JSON.parse(localStorage.getItem('cart'));
         let medItemsIds = cart.map((item) => item._id).toString();
         let medShop_id = cart[0].medshop_id;
-        let deliveryBoyResponse = await fetch("http://localhost:3000/api/deliverypartners/" + city);
+        let deliveryBoyResponse = await fetch("api/deliverypartners/" + city);
         deliveryBoyResponse = await deliveryBoyResponse.json();
         let deliveryBoyIds = deliveryBoyResponse.result.map((item) => item._id);
         let deliveryBoy_id = deliveryBoyIds[Math.floor(Math.random() * deliveryBoyIds.length)];
@@ -67,7 +67,7 @@ const Page = () => {
             amount: total + DELIVERY_CHARGES + (total * TAX / 100)
         };
 
-        let response = await fetch("http://localhost:3000/api/order", {
+        let response = await fetch("api/order", {
             method: 'POST',
             body: JSON.stringify(collection)
         });
