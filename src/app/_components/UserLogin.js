@@ -9,7 +9,7 @@ const UserLogin = (props) => {
 
     const handleLogin = async () => {
         console.log(email, password);
-        let response = await fetch("http://localhost:3000/api/user/login", {
+        let response = await fetch("api/user/login", {
             method: "POST",
             body: JSON.stringify({ email, password })
         })
