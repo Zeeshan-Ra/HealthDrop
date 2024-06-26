@@ -12,7 +12,7 @@ const MedItemList = () => {
     const loadMeds = async () => {
         const medshopData = JSON.parse(localStorage.getItem("medShopKeeper"));
         let medshop_id = medshopData._id
-        let response = await fetch("http://localhost:3000/api/medshop/medicines/" + medshop_id);
+        let response = await fetch("api/medshop/medicines/" + medshop_id);
         response = await response.json();
         if (response.success) {
             setMedicines(response.result)
@@ -22,7 +22,7 @@ const MedItemList = () => {
     }
 
     const deleteMed = async (id) => {
-        let response = await fetch("http://localhost:3000/api/medshop/medicines/" + id, {
+        let response = await fetch("api/medshop/medicines/" + id, {
             method: "DELETE"
         })
         response = await response.json();
