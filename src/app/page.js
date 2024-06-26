@@ -36,7 +36,7 @@ export default function Home() {
   }
 
   const loadMedshop = async (params) => {
-    let url = "/api/customer"
+    let url = "api/customer"
     if(params?.location){
       url = url+"?location="+params.location;
     }else if(params?.medshop){
