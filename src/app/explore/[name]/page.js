@@ -26,7 +26,7 @@ const Page = (props) => {
 
     const loadMedShopDetail = async () => {
         const id = props.searchParams.id;
-        let response = await fetch(`api/customer/${id}`);
+        let response = await fetch(`/api/customer/${id}`);
         response = await response.json();
         if (response.success) {
             setMedShopDetails(response.result);
