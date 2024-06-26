@@ -21,7 +21,7 @@ const AddMeds = (props) => {
         if (medicineData) {
             medshop_id = medicineData._id
         }
-        let response = await fetch("http://localhost:3000/api/medshop/medicines", {
+        let response = await fetch("api/medshop/medicines", {
             method: "POST",
             body: JSON.stringify({ name, price, img_path: path, description, medshop_id })
         })
